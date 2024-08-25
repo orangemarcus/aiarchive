@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('homepage') }}">Home</a>
+            <a href="/profile/yourusername">My Profile</a>
+        </nav>
+    </header>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>© 2024 AI Personality Archive</p>
+    </footer>
+</body>
+</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcome to the AI Personality Archive</h1>
+<div class="homepage-options">
+    <a href="#" class="btn">Browse Voices</a>
+    <a href="#" class="btn">Upload Your Voice</a>
+</div>
+{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <aside class="sidebar">
+        <h3>Community Archives</h3>
+        <ul>
+            <li><a href="/profile/elon">Elon</a></li>
+            <li><a href="/profile/trump">Trump</a></li>
+            <li><a href="/profile/biden">Biden</a></li>
+            <li><a href="/profile/ronnie">Ronnie Coleman</a></li>
+        </ul>
+    </aside>
+    <main class="profile-main">
+        <h2>{{ user.username }}</h2>
+        <img src="{{ url_for('static', filename='images/placeholder.png') }}" alt="Profile Image">
+        <p>{{ user.about }}</p>
+        <h4>Voice Excerpt:</h4>
+        <p>{{ user.voice_excerpt }}</p>
+    </main>
+</div>
+{% endblock %}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+nav a {
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
+}
+.content {
+    padding: 20px;
+}
+.homepage-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.profile-container {
+    display: flex;
+}
+.sidebar {
+    width: 25%;
+    padding: 15px;
+    background: #f4f4f4;
+}
+.profile-main {
+    width: 75%;
+    padding: 15px;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
