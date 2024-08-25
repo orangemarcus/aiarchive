@@ -3,103 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>PersonaForge - Create and Share AI Personalities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        #showcase {
+            min-height: 400px;
+            background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+            text-align: center;
+            color: #ffffff;
+        }
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+        #showcase p {
+            font-size: 20px;
+        }
+        #showcase .button {
+            font-size: 18px;
+            text-decoration: none;
+            color: #ffffff;
+            border: #ffffff 1px solid;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        #showcase .button:hover {
+            background: #e8491d;
+            color: #ffffff;
+        }
+        #boxes {
+            margin-top: 20px;
+        }
+        #boxes .box {
+            float: left;
+            text-align: center;
+            width: 30%;
+            padding: 10px;
+        }
+        #boxes .box img {
+            width: 90px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <a href="{{ url_for('homepage') }}">Home</a>
-            <a href="/profile/yourusername">My Profile</a>
-        </nav>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Persona</span>Forge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="create.html">Create</a></li>
+                    <li><a href="browse.html">Browse</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-    <footer>
-        <p>© 2024 AI Personality Archive</p>
-    </footer>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Forge Your Digital Persona</h1>
+            <p>Create, share, and interact with unique AI personalities in our vibrant community.</p>
+            <a href="create.html" class="button">Get Started</a>
+        </div>
+    </section>
+
+    <section id="boxes">
+        <div class="container">
+            <div class="box">
+                <img src="https://via.placeholder.com/90" alt="Create Icon">
+                <h3>Create</h3>
+                <p>Design your own AI personality with our intuitive tools.</p>
+            </div>
+            <div class="box">
+                <img src="https://via.placeholder.com/90" alt="Share Icon">
+                <h3>Share</h3>
+                <p>Share your creations with our community and get feedback.</p>
+            </div>
+            <div class="box">
+                <img src="https://via.placeholder.com/90" alt="Interact Icon">
+                <h3>Interact</h3>
+                <p>Engage with a diverse array of AI personalities.</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
-{% extends 'base.html' %}
-
-{% block content %}
-<h1>Welcome to the AI Personality Archive</h1>
-<div class="homepage-options">
-    <a href="#" class="btn">Browse Voices</a>
-    <a href="#" class="btn">Upload Your Voice</a>
-</div>
-{% endblock %}
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="profile-container">
-    <aside class="sidebar">
-        <h3>Community Archives</h3>
-        <ul>
-            <li><a href="/profile/elon">Elon</a></li>
-            <li><a href="/profile/trump">Trump</a></li>
-            <li><a href="/profile/biden">Biden</a></li>
-            <li><a href="/profile/ronnie">Ronnie Coleman</a></li>
-        </ul>
-    </aside>
-    <main class="profile-main">
-        <h2>{{ user.username }}</h2>
-        <img src="{{ url_for('static', filename='images/placeholder.png') }}" alt="Profile Image">
-        <p>{{ user.about }}</p>
-        <h4>Voice Excerpt:</h4>
-        <p>{{ user.voice_excerpt }}</p>
-    </main>
-</div>
-{% endblock %}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-}
-nav a {
-    color: #fff;
-    margin-right: 15px;
-    text-decoration: none;
-}
-.content {
-    padding: 20px;
-}
-.homepage-options {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-.btn {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-.profile-container {
-    display: flex;
-}
-.sidebar {
-    width: 25%;
-    padding: 15px;
-    background: #f4f4f4;
-}
-.profile-main {
-    width: 75%;
-    padding: 15px;
-}
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #333;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
